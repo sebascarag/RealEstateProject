@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{1054F4DF-4685-4CAA-B730-1231DDA9CF42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{A0F6491C-9869-455D-887E-3103087DDD50}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{50C0F6A2-E9F8-40C0-9DDF-934879E02F24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Domain", "RealEstate.Domain\RealEstate.Domain.csproj", "{D4079EF2-3E3B-4CDD-81F2-D001FC6F2680}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4079EF2-3E3B-4CDD-81F2-D001FC6F2680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4079EF2-3E3B-4CDD-81F2-D001FC6F2680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4079EF2-3E3B-4CDD-81F2-D001FC6F2680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4079EF2-3E3B-4CDD-81F2-D001FC6F2680}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4079EF2-3E3B-4CDD-81F2-D001FC6F2680} = {50C0F6A2-E9F8-40C0-9DDF-934879E02F24}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3078F5F-0C16-468F-A589-E2F5B9CEBDF8}
+	EndGlobalSection
+EndGlobal
