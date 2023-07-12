@@ -4,6 +4,7 @@ namespace RealEstate.Domain.Entities
 {
     public class PropertyImage : BaseEntity
     {
+        public int PropertyId { get; set; }
         public Property Property { get; set; }
         [Required]
         [StringLength(255)]
