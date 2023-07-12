@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using RealEstate.Api.Middlewares;
 using RealEstate.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,8 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v2/swagger.json", "RealEstateAPI");
 });
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
