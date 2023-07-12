@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RealEstate.Application.Behaviours;
 using RealEstate.DataAccess;
 using System.Reflection;
 
@@ -14,6 +16,8 @@ namespace RealEstate.Application
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(baseAssembly));
             services.AddValidatorsFromAssembly(baseAssembly);
             services.AddAutoMapper(baseAssembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
             services.AddRealEstateDataAccess(configuration);
             return services;
         }
