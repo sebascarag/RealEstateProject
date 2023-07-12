@@ -32,7 +32,10 @@ namespace RealEstate.DataAccess.Repository
             if (string.IsNullOrWhiteSpace(dbEntityEntry.GetType().GetProperty("CreatedBy")?.GetValue(entity) as string ?? ""))
                 SetValue(dbEntityEntry, "CreatedBy", "System");
 
-            SetValue(dbEntityEntry, "CreatedOn", DateTime.UtcNow);
+            var now = DateTime.UtcNow;
+            SetValue(dbEntityEntry, "CreatedOn", now);
+            SetValue(dbEntityEntry, "ModifiedBy", "System");
+            SetValue(dbEntityEntry, "ModifiedOn", now);
 
             if (dbEntityEntry.State == EntityState.Detached)
             {
@@ -70,7 +73,7 @@ namespace RealEstate.DataAccess.Repository
 
         private void SetValue(EntityEntry entity, string propertyName, object newValue)
         {
-            entity.GetType().GetProperty(propertyName)?.SetValue(entity, newValue);
+            entity.Entity.GetType().GetProperty(propertyName)?.SetValue(entity.Entity, newValue);
             entity.Property(propertyName).IsModified = true;
         }
     }
