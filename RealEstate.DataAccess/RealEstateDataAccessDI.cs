@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RealEstate.DataAccess.Repository;
-using RealEstate.Domain.Entities;
 
 namespace RealEstate.DataAccess
 {

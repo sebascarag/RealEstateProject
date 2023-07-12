@@ -6,7 +6,7 @@
         T Add(T entity);
         void Update(T entity);
         void Deactivate(T entity);
-        Task<T?> GetByIdAsync(int id);
+        Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken);
         bool Save();
     }
 }

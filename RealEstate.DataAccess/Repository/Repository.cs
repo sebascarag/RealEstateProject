@@ -23,7 +23,7 @@ namespace RealEstate.DataAccess.Repository
             return DbSet.Where(predicate);
         }
 
-        public async Task<T?> GetByIdAsync(int id) => await DbSet.FindAsync(id);
+        public async Task<T?> GetByIdAsync(int id, CancellationToken cancellation) => await DbSet.FindAsync(id);
 
         public T Add(T entity)
         {
