@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using RealEstate.Application.Wrappers;
 using RealEstate.DataAccess.Repository;
 using RealEstate.Domain.Entities;
 
@@ -25,15 +26,15 @@ namespace RealEstate.Application.Properties.Command
                 _ownerRepo = ownerRepo;
 
                 RuleFor(x => x.Name)
-                    .NotEmpty().WithMessage("Name is required")
-                    .MaximumLength(100).WithMessage("Name too large, must not exceed 100 characters");
+                    .NotEmpty().WithMessage("{PropertyName} is required")
+                    .MaximumLength(100).WithMessage("{PropertyName} too large, must not exceed 100 characters");
                 RuleFor(x => x.Address)
-                    .NotEmpty().WithMessage("Address is required")
-                    .MaximumLength(255).WithMessage("Address too large, must not exceed 255 characters"); ;
+                    .NotEmpty().WithMessage("{PropertyName} is required")
+                    .MaximumLength(255).WithMessage("{PropertyName} too large, must not exceed 255 characters");
                 RuleFor(x => x.Price)
-                    .GreaterThanOrEqualTo(0).WithMessage("Price must be positive value");
+                    .GreaterThanOrEqualTo(0).WithMessage("{PropertyName} must be positive value");
                 RuleFor(x => x.OwnerId)
-                    .MustAsync(OwnerExist).WithMessage("Owner doesn't exist");
+                    .MustAsync(OwnerExist).WithMessage("{PropertyName} doesn't exist");
             }
 
             public async Task<bool> OwnerExist(int ownerId, CancellationToken cancellationToken)
@@ -68,7 +69,7 @@ namespace RealEstate.Application.Properties.Command
                 if (_propertyRepo.Save())
                     return Task.FromResult(true);
                 else
-                    throw new Exception();
+                    throw new ApiException("Property could not be save");
             }
         }
     }
