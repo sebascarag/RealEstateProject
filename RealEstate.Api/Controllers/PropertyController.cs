@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Properties.Command;
+using RealEstate.Application.Properties.Queries;
 
 namespace RealEstate.Api.Controllers
 {
@@ -35,6 +36,12 @@ namespace RealEstate.Api.Controllers
 
         [HttpPut]
         public async Task<ActionResult<bool>> Put(UpdatePropertyCommandRequest request)
+        {
+            return await _mediator.Send(request);
+        }
+
+        [HttpGet]
+        public async Task<IList<PropertyFilteredDto>> Get(GetPropertiesWithFiltersQueryRequest request)
         {
             return await _mediator.Send(request);
         }

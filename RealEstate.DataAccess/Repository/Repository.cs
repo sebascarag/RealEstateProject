@@ -24,6 +24,16 @@ namespace RealEstate.DataAccess.Repository
             return DbSet.Where(predicate);
         }
 
+        public IQueryable<T> GetAllActiveIncluding(params Expression<Func<T, object>>[] includeProperties)
+        {
+            return includeProperties.Aggregate(GetAllActive(), (current, includeProperty) => current.Include(includeProperty));
+        }
+
+        public async Task<IList<T>> ToListAsync(IQueryable<T> query)
+        {
+            return await query.ToListAsync();
+        }
+
         public async Task<T?> GetByIdAsync(int id, CancellationToken cancellation) => await DbSet.FindAsync(id);
 
         public T Add(T entity)
