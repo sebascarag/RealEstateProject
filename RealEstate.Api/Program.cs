@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using RealEstate.Api.Middlewares;
 using RealEstate.Application;
+using RealEstate.FileService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ var config = builder.Configuration;
 
 // Add project dependecies
 builder.Services.AddAddRealEstateApplication(config);
+builder.Services.AddRealEstateFileService();
 
 // Set Cors
 builder.Services.AddCors(cors =>
