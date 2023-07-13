@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RealEstate.Application.Contracts;
 using RealEstate.DataAccess.Repository;
 
 namespace RealEstate.DataAccess

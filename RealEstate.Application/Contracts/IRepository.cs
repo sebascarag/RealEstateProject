@@ -1,4 +1,4 @@
-﻿namespace RealEstate.DataAccess.Repository
+﻿namespace RealEstate.Application.Contracts
 {
     public interface IRepository<T> where T : class
     {
@@ -7,6 +7,6 @@
         void Update(T entity);
         void Deactivate(T entity);
         Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken);
-        bool Save();
+        Task<bool> SaveAsync();
     }
 }

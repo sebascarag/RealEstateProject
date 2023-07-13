@@ -9,13 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{50C0F6A2-E9F8-40C0-9DDF-934879E02F24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Domain", "RealEstate.Domain\RealEstate.Domain.csproj", "{D4079EF2-3E3B-4CDD-81F2-D001FC6F2680}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstate.Domain", "RealEstate.Domain\RealEstate.Domain.csproj", "{D4079EF2-3E3B-4CDD-81F2-D001FC6F2680}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.DataAccess", "RealEstate.DataAccess\RealEstate.DataAccess.csproj", "{65D5CE39-6698-4786-BCC3-C80B4F84AF50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstate.DataAccess", "RealEstate.DataAccess\RealEstate.DataAccess.csproj", "{65D5CE39-6698-4786-BCC3-C80B4F84AF50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Application", "RealEstate.Application\RealEstate.Application.csproj", "{B847964C-8A03-4B16-A9F9-685203EE6644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstate.Application", "RealEstate.Application\RealEstate.Application.csproj", "{B847964C-8A03-4B16-A9F9-685203EE6644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Api", "RealEstate.Api\RealEstate.Api.csproj", "{F8E82AD6-F885-4FE0-9DFD-D7FFB5C2DF5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstate.Api", "RealEstate.Api\RealEstate.Api.csproj", "{F8E82AD6-F885-4FE0-9DFD-D7FFB5C2DF5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.FileService", "RealEstate.FileService\RealEstate.FileService.csproj", "{7AE9C477-76F9-495A-8AAB-8CF3DB49DF11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F8E82AD6-F885-4FE0-9DFD-D7FFB5C2DF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8E82AD6-F885-4FE0-9DFD-D7FFB5C2DF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8E82AD6-F885-4FE0-9DFD-D7FFB5C2DF5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE9C477-76F9-495A-8AAB-8CF3DB49DF11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE9C477-76F9-495A-8AAB-8CF3DB49DF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE9C477-76F9-495A-8AAB-8CF3DB49DF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE9C477-76F9-495A-8AAB-8CF3DB49DF11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{65D5CE39-6698-4786-BCC3-C80B4F84AF50} = {1054F4DF-4685-4CAA-B730-1231DDA9CF42}
 		{B847964C-8A03-4B16-A9F9-685203EE6644} = {A0F6491C-9869-455D-887E-3103087DDD50}
 		{F8E82AD6-F885-4FE0-9DFD-D7FFB5C2DF5B} = {1054F4DF-4685-4CAA-B730-1231DDA9CF42}
+		{7AE9C477-76F9-495A-8AAB-8CF3DB49DF11} = {1054F4DF-4685-4CAA-B730-1231DDA9CF42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3078F5F-0C16-468F-A589-E2F5B9CEBDF8}

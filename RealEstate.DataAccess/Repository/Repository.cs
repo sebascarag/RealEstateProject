@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using RealEstate.Application.Contracts;
 using System.Linq.Expressions;
 
 namespace RealEstate.DataAccess.Repository
@@ -69,7 +70,7 @@ namespace RealEstate.DataAccess.Repository
             SetValue(dbEntityEntry, "Active", false);
         }
 
-        public bool Save() => (DbContext.SaveChanges()) > 0;
+        public async Task<bool> SaveAsync() => await DbContext.SaveChangesAsync() > 0;
 
         private void SetValue(EntityEntry entity, string propertyName, object newValue)
         {

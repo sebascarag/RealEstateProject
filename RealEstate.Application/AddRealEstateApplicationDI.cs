@@ -3,14 +3,13 @@ using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RealEstate.Application.Behaviours;
-using RealEstate.DataAccess;
 using System.Reflection;
 
 namespace RealEstate.Application
 {
     public static class AddRealEstateApplicationDI
     {
-        public static IServiceCollection AddAddRealEstateApplication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddRealEstateApplication(this IServiceCollection services, IConfiguration configuration)
         {
             var baseAssembly = Assembly.GetExecutingAssembly();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(baseAssembly));
@@ -18,7 +17,6 @@ namespace RealEstate.Application
             services.AddAutoMapper(baseAssembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-            services.AddRealEstateDataAccess(configuration);
             return services;
         }
     }
