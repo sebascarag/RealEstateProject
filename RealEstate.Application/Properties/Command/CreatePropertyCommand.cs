@@ -31,7 +31,10 @@ namespace RealEstate.Application.Properties.Command
                 .MaximumLength(255).WithMessage("{PropertyName} too large, must not exceed 255 characters");
             RuleFor(x => x.Price)
                 .GreaterThanOrEqualTo(0).WithMessage("{PropertyName} must be positive value");
+            RuleFor(x => x.Year)
+                .GreaterThan(0);
             RuleFor(x => x.OwnerId)
+                .NotEmpty()
                 .MustAsync(OwnerExist).WithMessage("{PropertyName} doesn't exist");
         }
 
