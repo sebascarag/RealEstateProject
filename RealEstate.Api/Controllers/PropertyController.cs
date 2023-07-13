@@ -32,5 +32,11 @@ namespace RealEstate.Api.Controllers
         {
             return await _mediator.Send(request);
         }
+
+        [HttpPut]
+        public async Task<ActionResult<bool>> Put(UpdatePropertyCommandRequest request)
+        {
+            return await _mediator.Send(request);
+        }
     }
 }
