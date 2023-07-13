@@ -26,5 +26,11 @@ namespace RealEstate.Api.Controllers
         {
             return await _mediator.Send(request);
         }
+
+        [HttpPut("[action]")]
+        public async Task<ActionResult<bool>> ChangePrice(UpdatePropertyPriceCommandRequest request)
+        {
+            return await _mediator.Send(request);
+        }
     }
 }
