@@ -16,7 +16,13 @@ namespace RealEstate.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> Post(CreatePropertyCommand.Request request)
+        public async Task<ActionResult<bool>> Post(CreatePropertyCommandRequest request)
+        {
+            return await _mediator.Send(request);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<ActionResult<bool>> AddImage([FromForm] CreatePropertyImageCommandRequest request)
         {
             return await _mediator.Send(request);
         }
