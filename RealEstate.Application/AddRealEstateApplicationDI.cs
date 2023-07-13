@@ -13,9 +13,12 @@ namespace RealEstate.Application
         {
             var baseAssembly = Assembly.GetExecutingAssembly();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(baseAssembly));
+            // fluent
             services.AddValidatorsFromAssembly(baseAssembly);
-            services.AddAutoMapper(baseAssembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            ValidatorOptions.Global.LanguageManager.Enabled = false;
+            
+            services.AddAutoMapper(baseAssembly);
 
             return services;
         }
