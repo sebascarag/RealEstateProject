@@ -56,7 +56,7 @@ namespace RealEstate.Application.Properties.Command
             property.Year = request.Year;
             property.OwnerId = request.OwnerId;
             _propertyRepo.Update(property);
-            var result = await _propertyRepo.SaveAsync();
+            var result = await _propertyRepo.SaveAsync(cancellationToken);
             if (result)
                 return result;
             else

@@ -55,7 +55,7 @@ namespace RealEstate.Application.Properties.Command
                     Active = true
                 };
                 _propertyImageRepo.Add(propetyImage);
-                var result = await _propertyImageRepo.SaveAsync();
+                var result = await _propertyImageRepo.SaveAsync(cancellationToken);
                 if (result)
                     return result;
                 else

@@ -29,9 +29,9 @@ namespace RealEstate.DataAccess.Repository
             return includeProperties.Aggregate(GetAllActive(), (current, includeProperty) => current.Include(includeProperty));
         }
 
-        public async Task<IList<T>> ToListAsync(IQueryable<T> query)
+        public async Task<IList<T>> ToListAsync(IQueryable<T> query, CancellationToken cancellationToken)
         {
-            return await query.ToListAsync();
+            return await query.ToListAsync(cancellationToken);
         }
 
         public async Task<T?> GetByIdAsync(int id, CancellationToken cancellation) => await DbSet.FindAsync(id);
@@ -66,7 +66,7 @@ namespace RealEstate.DataAccess.Repository
             SetValue(dbEntityEntry, "Active", false);
         }
 
-        public async Task<bool> SaveAsync() => await DbContext.SaveChangesAsync() > 0;
+        public async Task<bool> SaveAsync(CancellationToken cancellationToken) => await DbContext.SaveChangesAsync(cancellationToken) > 0;
 
         private void SetValue(EntityEntry entity, string propertyName, object newValue)
         {

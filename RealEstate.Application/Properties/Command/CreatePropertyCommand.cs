@@ -66,7 +66,7 @@ namespace RealEstate.Application.Properties.Command
                 Active = true
             };
             _propertyRepo.Add(property);
-            var result = await _propertyRepo.SaveAsync();
+            var result = await _propertyRepo.SaveAsync(cancellationToken);
             if (result)
                 return result;
             else

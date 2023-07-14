@@ -36,7 +36,7 @@ namespace RealEstate.Application.Properties.Command
             var property = await _propertyRepo.GetByIdAsync(request.PropertyId, cancellationToken) ?? throw new ApiException("Property doesn't exist");
             property.Price = request.Price;
             _propertyRepo.Update(property);
-            var result = await _propertyRepo.SaveAsync();
+            var result = await _propertyRepo.SaveAsync(cancellationToken);
             if (result)
                 return result;
             else

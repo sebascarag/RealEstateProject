@@ -51,7 +51,7 @@ namespace RealEstate.Application.Properties.Queries
                 .Where(p => p.Price >= request.MinPrice)
                 .WhereIf(p => p.Price <= request.MaxPrice, request.MaxPrice > 0);
 
-            var propertyList = await _propertyRepo.ToListAsync(query);
+            var propertyList = await _propertyRepo.ToListAsync(query, cancellationToken);
 
             return _mapper.Map<IList<PropertyFilteredDto>>(propertyList);
         }
