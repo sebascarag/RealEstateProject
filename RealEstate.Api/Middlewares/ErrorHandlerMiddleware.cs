@@ -1,4 +1,5 @@
-﻿using RealEstate.Api.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstate.Api.Models;
 using RealEstate.Application.Exceptions;
 using System.Net;
 using System.Text.Json;
@@ -40,6 +41,9 @@ namespace RealEstate.Api.Middlewares
                     case UnauthorizedAccessException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        break;
+                    case DbUpdateException e:
+                        response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
                     default:
                         // unhandled error

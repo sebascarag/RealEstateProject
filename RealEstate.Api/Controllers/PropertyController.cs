@@ -17,33 +17,33 @@ namespace RealEstate.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<bool>> Post(CreatePropertyCommandRequest request)
+        public async Task<IActionResult> Post(CreatePropertyCommandRequest request)
         {
-            return await _mediator.Send(request);
+            return this.OkResponse(await _mediator.Send(request));
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResult<bool>> AddImage([FromForm] CreatePropertyImageCommandRequest request)
+        public async Task<IActionResult> AddImage([FromForm] CreatePropertyImageCommandRequest request)
         {
-            return await _mediator.Send(request);
+            return this.OkResponse(await _mediator.Send(request));
         }
 
         [HttpPut("[action]")]
-        public async Task<ActionResult<bool>> ChangePrice(UpdatePropertyPriceCommandRequest request)
+        public async Task<IActionResult> ChangePrice(UpdatePropertyPriceCommandRequest request)
         {
-            return await _mediator.Send(request);
+            return this.OkResponse(await _mediator.Send(request));
         }
 
         [HttpPut]
-        public async Task<ActionResult<bool>> Put(UpdatePropertyCommandRequest request)
+        public async Task<IActionResult> Put(UpdatePropertyCommandRequest request)
         {
-            return await _mediator.Send(request);
+            return this.OkResponse(await _mediator.Send(request));
         }
 
         [HttpGet]
-        public async Task<IList<PropertyFilteredDto>> Get(GetPropertiesWithFiltersQueryRequest request)
+        public async Task<IActionResult> Get(GetPropertiesWithFiltersQueryRequest request)
         {
-            return await _mediator.Send(request);
+            return this.OkResponse(await _mediator.Send(request));
         }
     }
 }
