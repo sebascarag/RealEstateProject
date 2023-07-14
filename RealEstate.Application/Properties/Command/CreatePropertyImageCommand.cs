@@ -16,11 +16,18 @@ namespace RealEstate.Application.Properties.Command
 
     public class CreatePropertyImageCommandValidation : AbstractValidator<CreatePropertyImageCommandRequest>
     {
-        public CreatePropertyImageCommandValidation()
+        private readonly IRepository<Property> _propertyRepo;
+
+        public CreatePropertyImageCommandValidation(IRepository<Property> propertyRepo)
         {
+            _propertyRepo = propertyRepo;
             RuleFor(r => r.FormFile)
                 .NotNull().WithMessage("File not provided")
+                .Must(r => r.Length < 1024 * 1024).WithMessage("The file exceeds the maximum size, must be 1 MB")
                 .Must(AllowedExtension).WithMessage("File extension not allowed");
+            RuleFor(r => r.PropertyId)
+                .NotEmpty()
+                .MustAsync(PropertyExist).WithMessage("{PropertyName} doesn't exist");
         }
         public bool AllowedExtension(IFormFile file)
         {
@@ -28,8 +35,9 @@ namespace RealEstate.Application.Properties.Command
             var extension = Path.GetExtension(file.FileName);
             return allowedExtension.Contains(extension.ToLower());
         }
+        public async Task<bool> PropertyExist(int Id, CancellationToken cancellationToken)
+            => true;//await _propertyRepo.GetByIdAsync(Id, cancellationToken) != null;
     }
-
 
     public class CreatePropertyImageCommandHandler : IRequestHandler<CreatePropertyImageCommandRequest, bool>
     {
@@ -44,9 +52,11 @@ namespace RealEstate.Application.Properties.Command
 
         public async Task<bool> Handle(CreatePropertyImageCommandRequest request, CancellationToken cancellationToken)
         {
+            string fileName = "";
             try
             {
-                var fileName = await _fileService.SaveFileAsync(request.FormFile);
+                fileName = await _fileService.SaveFileAsync(request.FormFile);
+
                 var propetyImage = new PropertyImage
                 {
                     PropertyId = request.PropertyId,
@@ -63,9 +73,9 @@ namespace RealEstate.Application.Properties.Command
             }
             catch (Exception)
             {
-                throw new ApiException("Could not save file");
+                await _fileService.DeleteFileAsync(fileName);
+                throw;
             }
-
         }
     }
 }

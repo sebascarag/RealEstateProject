@@ -6,6 +6,7 @@ namespace RealEstate.Application.Contracts
     public interface IFileService
     {
         Task<string> SaveFileAsync(IFormFile formFile);
-        byte[]? GetFile(string fileName);
+        Task<bool> DeleteFileAsync(string fileName);
+        Task<byte[]?> GetFileAsync(string fileName);
     }
 }

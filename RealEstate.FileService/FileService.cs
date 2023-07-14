@@ -12,12 +12,30 @@ namespace RealEstate.FileService
             _contentRootPath = Environment.CurrentDirectory;
         }
 
-        public byte[]? GetFile(string fileName)
+        public async Task<bool> DeleteFileAsync(string fileName)
         {
             var path = Path.Combine(_contentRootPath, "Files", fileName);
             if (File.Exists(path))
             {
-                return File.ReadAllBytes(path);
+                try
+                {
+                    File.Delete(path);
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+
+        public async Task<byte[]?> GetFileAsync(string fileName)
+        {
+            var path = Path.Combine(_contentRootPath, "Files", fileName);
+            if (File.Exists(path))
+            {
+                return await File.ReadAllBytesAsync(path);
             }
             return null;
         }
@@ -40,7 +58,7 @@ namespace RealEstate.FileService
             }
             catch (Exception)
             {
-                throw;
+                throw new Exception("File could not be save");
             }
         }
     }
