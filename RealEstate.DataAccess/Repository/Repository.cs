@@ -39,15 +39,6 @@ namespace RealEstate.DataAccess.Repository
         public T Add(T entity)
         {
             var dbEntityEntry = DbContext.Entry(entity);
-            // set audit props
-            if (string.IsNullOrWhiteSpace(dbEntityEntry.GetType().GetProperty("CreatedBy")?.GetValue(entity) as string ?? ""))
-                SetValue(dbEntityEntry, "CreatedBy", "System");
-
-            var now = DateTime.UtcNow;
-            SetValue(dbEntityEntry, "CreatedOn", now);
-            SetValue(dbEntityEntry, "ModifiedBy", "System");
-            SetValue(dbEntityEntry, "ModifiedOn", now);
-
             if (dbEntityEntry.State == EntityState.Detached)
             {
                 DbSet.Add(entity);
@@ -60,11 +51,6 @@ namespace RealEstate.DataAccess.Repository
         public void Update(T entity)
         {
             EntityEntry dbEntityEntry = DbContext.Entry(entity);
-            // set audit props
-            if (string.IsNullOrWhiteSpace(dbEntityEntry.GetType().GetProperty("ModifiedBy")?.GetValue(entity) as string ?? ""))
-                SetValue(dbEntityEntry, "ModifiedBy", "System");
-
-            SetValue(dbEntityEntry, "ModifiedOn", DateTime.UtcNow);
 
             if (dbEntityEntry.State == EntityState.Detached)
             {

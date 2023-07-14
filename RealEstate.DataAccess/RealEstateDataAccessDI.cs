@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RealEstate.Application.Contracts;
+using RealEstate.DataAccess.Interceptors;
 using RealEstate.DataAccess.Repository;
 
 namespace RealEstate.DataAccess
@@ -10,6 +11,7 @@ namespace RealEstate.DataAccess
     {
         public static IServiceCollection AddRealEstateDataAccess(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<AuditableEntitySaveChangesInterceptor>();
             services.AddDbContext<RealEstateDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             return services;
