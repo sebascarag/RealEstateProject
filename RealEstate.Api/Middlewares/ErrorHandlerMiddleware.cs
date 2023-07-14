@@ -1,4 +1,5 @@
-﻿using RealEstate.Application.Wrappers;
+﻿using RealEstate.Api.Models;
+using RealEstate.Application.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -36,9 +37,9 @@ namespace RealEstate.Api.Middlewares
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         responseModel.Errors = e.Errors;
                         break;
-                    case KeyNotFoundException e:
+                    case UnauthorizedAccessException e:
                         // not found error
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
+                        response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         break;
                     default:
                         // unhandled error

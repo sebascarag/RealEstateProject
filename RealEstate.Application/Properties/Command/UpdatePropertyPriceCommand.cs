@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using RealEstate.Application.Contracts;
-using RealEstate.Application.Wrappers;
+using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Entities;
 
 namespace RealEstate.Application.Properties.Command

@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace RealEstate.Application.Wrappers
+namespace RealEstate.Application.Exceptions
 {
     public class ValidationException : Exception
     {
@@ -9,7 +9,7 @@ namespace RealEstate.Application.Wrappers
             Errors = new List<string>();
         }
         public List<string> Errors { get; }
-        public ValidationException(IEnumerable<ValidationFailure> failures) 
+        public ValidationException(IEnumerable<ValidationFailure> failures)
             : this() => Errors.AddRange(failures.Select(f => f.ErrorMessage).ToList());
 
     }

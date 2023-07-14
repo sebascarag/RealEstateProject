@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace RealEstate.Application.Wrappers
+namespace RealEstate.Application.Exceptions
 {
     public class ApiException : Exception
     {
