@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using RealEstate.Api;
 using RealEstate.Api.Middlewares;
 using RealEstate.Application;
 using RealEstate.DataAccess;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 // Add project dependecies
+builder.Services.AddRealEstateApi();
 builder.Services.AddRealEstateApplication(config);
 builder.Services.AddRealEstateDataAccess(config);
 builder.Services.AddRealEstateFileService();

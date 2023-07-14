@@ -13,6 +13,8 @@ namespace RealEstate.Application
         {
             var baseAssembly = Assembly.GetExecutingAssembly();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(baseAssembly));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
+
             // fluent
             services.AddValidatorsFromAssembly(baseAssembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
