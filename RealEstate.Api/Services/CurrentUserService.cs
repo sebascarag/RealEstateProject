@@ -10,9 +10,9 @@ namespace RealEstate.Api.Services
         private readonly string _userId;
         private readonly string _userName;
         private readonly HttpContext? _httpContext;
-        public CurrentUserService(IHttpContextAccessor httpContext)
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            _httpContext = httpContext.HttpContext;
+            _httpContext = httpContextAccessor.HttpContext;
             // check if context has any claim
             _hasClaims = _httpContext != null && _httpContext?.User.Identity is ClaimsIdentity claims && claims.Claims.Any();
             if (_hasClaims)
@@ -22,9 +22,9 @@ namespace RealEstate.Api.Services
             }
         }
 
-        public int? UserId { get => _hasClaims ? int.Parse(_userId) : null; } // return userId if context has claims
+        public string? UserId { get => _hasClaims ? _userId : null; } // return userId if context has claims
         public string? UserName { get => _hasClaims ? _userName : null; } // return userName if context has claims
-        public bool IsInRoleAsync(string role)
+        public bool IsInRole(string role)
         {
             // Check if context has role claim
             if (_httpContext != null && !_httpContext.User.HasClaim(c => c.Type == ClaimsIdentity.DefaultRoleClaimType))
