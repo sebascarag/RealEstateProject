@@ -9,6 +9,7 @@ namespace RealEstate.Api.Services
         private readonly bool _hasClaims;
         private readonly string _userId;
         private readonly string _userName;
+        private readonly string? _roles;
         private readonly HttpContext? _httpContext;
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
@@ -19,6 +20,7 @@ namespace RealEstate.Api.Services
             {
                 _userId = _httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _userName = _httpContext.User.FindFirstValue(ClaimTypes.Email);
+                _roles = _httpContext.User.FindFirstValue(ClaimTypes.Role);
             }
         }
 
@@ -26,15 +28,15 @@ namespace RealEstate.Api.Services
         public string? UserName { get => _hasClaims ? _userName : null; } // return userName if context has claims
         public bool IsInRole(string role)
         {
-            // Check if context has role claim
-            if (_httpContext != null && !_httpContext.User.HasClaim(c => c.Type == ClaimsIdentity.DefaultRoleClaimType))
+            if (_roles == null) 
                 return false;
 
             // Split the token roles string into an array
-            var claimRoles = _httpContext?.User.FindFirst(c => c.Type == ClaimsIdentity.DefaultRoleClaimType)?.Value.Split(',');
+            var userRoles = _roles.Split(',');
+            var checkRoles = role.Split(',');
 
             // Succeed if the claimRoles array contains the required role
-            return claimRoles != null && claimRoles.Any(r => role.Split(',').Contains(r));
+            return userRoles.Any(ur => checkRoles.Contains(ur));
         }
     }
 }
