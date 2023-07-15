@@ -2,6 +2,7 @@
 using RealEstate.Api.Models;
 using RealEstate.Application.Exceptions;
 using System.Net;
+using System.Security.Authentication;
 using System.Text.Json;
 
 namespace RealEstate.Api.Middlewares
@@ -39,6 +40,10 @@ namespace RealEstate.Api.Middlewares
                         responseModel.Errors = e.Errors;
                         break;
                     case UnauthorizedAccessException e:
+                        // not found error
+                        response.StatusCode = (int)HttpStatusCode.Forbidden;
+                        break;
+                    case AuthenticationException e:
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         break;
