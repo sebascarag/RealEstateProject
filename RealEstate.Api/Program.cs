@@ -39,6 +39,11 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+if (app.Environment.IsDevelopment())
+    // Do migrations and initialize database when start app, if you don't want this approach, comment
+    await app.InitializeDatabaseAsync();
+
 app.UseCors("CorsPolicy");
 
 app.UseSwagger();

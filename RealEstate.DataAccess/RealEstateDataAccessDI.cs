@@ -15,6 +15,9 @@ namespace RealEstate.DataAccess
         {
             services.AddScoped<AuditableEntitySaveChangesInterceptor>(); // set audits props before save
             services.AddDbContext<RealEstateDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<RealEstateDbContextInitializer>(); // intialize database
+
             // use same db contexto for identity
             services.AddIdentityCore<ApplicationUser>(opt =>
             {
