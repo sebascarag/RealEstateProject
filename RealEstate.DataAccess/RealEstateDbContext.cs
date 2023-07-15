@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using RealEstate.DataAccess.Identity;
 using RealEstate.DataAccess.Interceptors;
 using RealEstate.Domain.Entities;
 using System.Reflection;
 
 namespace RealEstate.DataAccess
 {
-    public class RealEstateDbContext : DbContext
+    public class RealEstateDbContext : IdentityDbContext<ApplicationUser>
     {
         private readonly AuditableEntitySaveChangesInterceptor _auditableEntitySaveChangesInterceptor;
         public DbSet<Owner> Owners { get; set; }
@@ -13,7 +15,6 @@ namespace RealEstate.DataAccess
         public DbSet<PropertyTrace> PropertyTraces { get; set; }
         public DbSet<Property> Properties { get; set; }
 
-        public RealEstateDbContext() { }
         public RealEstateDbContext(DbContextOptions options, AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor) : base(options)
         {
             _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
