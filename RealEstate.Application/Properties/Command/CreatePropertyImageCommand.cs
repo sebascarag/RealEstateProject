@@ -9,8 +9,8 @@ namespace RealEstate.Application.Properties.Command
 {
     public record CreatePropertyImageCommandRequest : IRequest<bool>
     {
-        public int PropertyId { get; init; }
-        public IFormFile FormFile { get; init; }
+        public int? PropertyId { get; init; }
+        public IFormFile? FormFile { get; init; }
         public bool Enabled { get; init; }
     }
 
@@ -35,7 +35,7 @@ namespace RealEstate.Application.Properties.Command
             var extension = Path.GetExtension(file.FileName);
             return allowedExtension.Contains(extension.ToLower());
         }
-        public async Task<bool> PropertyExist(int Id, CancellationToken cancellationToken)
+        public async Task<bool> PropertyExist(int? Id, CancellationToken cancellationToken)
             => true;//await _propertyRepo.GetByIdAsync(Id, cancellationToken) != null;
     }
 
@@ -59,7 +59,7 @@ namespace RealEstate.Application.Properties.Command
 
                 var propetyImage = new PropertyImage
                 {
-                    PropertyId = request.PropertyId,
+                    PropertyId = request.PropertyId.Value,
                     File = fileName,
                     Enable = request.Enabled,
                     Active = true

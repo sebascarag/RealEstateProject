@@ -15,7 +15,7 @@ namespace RealEstate.Application.Properties.Command
         public int OwnerId { get; init; }
     }
 
-    public class UpdatePropertyCommandValidation : AbstractValidator<UpdatePropertyCommandRequest> 
+    public class UpdatePropertyCommandValidation : AbstractValidator<UpdatePropertyCommandRequest>
     {
         private readonly IRepository<Owner> _ownerRepo;
 
@@ -37,7 +37,7 @@ namespace RealEstate.Application.Properties.Command
                 .MustAsync(OwnerExist).WithMessage("{PropertyName} doesn't exist");
         }
         public async Task<bool> OwnerExist(int ownerId, CancellationToken cancellationToken)
-            =>  await _ownerRepo.GetByIdAsync(ownerId, cancellationToken) != null;
+            => await _ownerRepo.GetByIdAsync(ownerId, cancellationToken) != null;
     }
 
     public class UpdatePropertyCommandHandler : IRequestHandler<UpdatePropertyCommandRequest, bool>
