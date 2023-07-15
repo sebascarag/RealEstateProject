@@ -29,14 +29,14 @@ namespace RealEstate.Application.Properties.Command
                 .NotEmpty()
                 .MustAsync(PropertyExist).WithMessage("{PropertyName} doesn't exist");
         }
-        public bool AllowedExtension(IFormFile file)
+        public bool AllowedExtension(IFormFile? file)
         {
             string[] allowedExtension = new string[] { ".png", ".jpg", ".jpeg" };
-            var extension = Path.GetExtension(file.FileName);
-            return allowedExtension.Contains(extension.ToLower());
+            var extension = Path.GetExtension(file?.FileName);
+            return allowedExtension.Contains(extension?.ToLower());
         }
         public async Task<bool> PropertyExist(int? Id, CancellationToken cancellationToken)
-            => true;//await _propertyRepo.GetByIdAsync(Id, cancellationToken) != null;
+            => await _propertyRepo.GetByIdAsync(Id.Value, cancellationToken) != null;
     }
 
     public class CreatePropertyImageCommandHandler : IRequestHandler<CreatePropertyImageCommandRequest, bool>

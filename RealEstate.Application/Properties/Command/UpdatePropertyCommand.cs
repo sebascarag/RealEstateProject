@@ -9,8 +9,8 @@ namespace RealEstate.Application.Properties.Command
     public record UpdatePropertyCommandRequest : IRequest<bool>
     {
         public int PropertyId { get; init; }
-        public string Name { get; init; }
-        public string Address { get; init; }
+        public string? Name { get; init; }
+        public string? Address { get; init; }
         public int Year { get; init; }
         public int OwnerId { get; init; }
     }
