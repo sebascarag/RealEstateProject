@@ -22,10 +22,10 @@ namespace RealEstate.Application.Properties.Queries
         public GetPropertiesWithFiltersQueryValidation()
         {
             RuleFor(r => r.MaxPrice)
-                .GreaterThan(r => r.MinPrice)
+                .GreaterThanOrEqualTo(r => r.MinPrice)
                 .When(r => r.MaxPrice > 0);
             RuleFor(r => r.MaxYear)
-                .GreaterThan(r => (int)r.MinYear)
+                .GreaterThanOrEqualTo(r => (int)r.MinYear)
                 .When(r => r.MaxPrice > 0);
         }
     }
