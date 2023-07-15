@@ -3,7 +3,7 @@ using RealEstate.Api;
 using RealEstate.Api.Middlewares;
 using RealEstate.Application;
 using RealEstate.DataAccess;
-using RealEstate.FileService;
+using RealEstate.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +14,7 @@ var config = builder.Configuration;
 builder.Services.AddRealEstateApi();
 builder.Services.AddRealEstateApplication(config);
 builder.Services.AddRealEstateDataAccess(config);
-builder.Services.AddRealEstateFileService();
+builder.Services.AddRealEstateServices();
 
 // Set Cors
 builder.Services.AddCors(cors =>

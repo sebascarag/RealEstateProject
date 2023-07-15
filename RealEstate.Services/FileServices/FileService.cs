@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using RealEstate.Application.Contracts;
 
-namespace RealEstate.FileService
+namespace RealEstate.Services.FileServices
 {
     public class FileService : IFileService
     {

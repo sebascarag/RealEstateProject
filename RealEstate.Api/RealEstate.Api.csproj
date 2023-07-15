@@ -13,7 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RealEstate.Application\RealEstate.Application.csproj" />
     <ProjectReference Include="..\RealEstate.DataAccess\RealEstate.DataAccess.csproj" />
-    <ProjectReference Include="..\RealEstate.FileService\RealEstate.FileService.csproj" />
+    <ProjectReference Include="..\RealEstate.Services\RealEstate.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
