@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using RealEstate.Application.Contracts;
-using RealEstate.Application.CustomAttributes;
 using System.Reflection;
 
 namespace RealEstate.Application.Behaviours
@@ -33,14 +33,17 @@ namespace RealEstate.Application.Behaviours
                 {
                     var authorized = false;
 
-                    foreach (var roles in authorizeAttributesWithRoles.Select(a => a.Roles))
+                    foreach (var roles in authorizeAttributesWithRoles.Select(a => a.Roles?.Split(',')))
                     {
-                        // Check authorize roles in user context
-                        var isInRole = _user.IsInRoleAsync(roles);
-                        if (isInRole)
+                        foreach (var role in roles)
                         {
-                            authorized = true;
-                            break;
+                            // Check authorize roles in user context
+                            var isInRole = _user.IsInRole(role);
+                            if (isInRole)
+                            {
+                                authorized = true;
+                                break;
+                            }
                         }
                     }
 
