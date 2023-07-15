@@ -41,7 +41,7 @@ namespace RealEstate.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(GetPropertiesWithFiltersQueryRequest request)
+        public async Task<IActionResult> Get([FromQuery] GetPropertiesWithFiltersQueryRequest request)
         {
             return this.OkResponse(await _mediator.Send(request));
         }
