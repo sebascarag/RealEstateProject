@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Properties.Command;
 using RealEstate.Application.Properties.Queries;
@@ -7,6 +8,7 @@ namespace RealEstate.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PropertyController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -41,6 +43,7 @@ namespace RealEstate.Api.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get([FromQuery] GetPropertiesWithFiltersQueryRequest request)
         {
             return this.OkResponse(await _mediator.Send(request));

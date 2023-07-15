@@ -1,11 +1,14 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using RealEstate.Application.Contracts;
 using RealEstate.Application.Exceptions;
+using RealEstate.Domain.Constants;
 using RealEstate.Domain.Entities;
 
 namespace RealEstate.Application.Properties.Command
 {
+    [Authorize(Roles = Roles.Administrator)]
     public record UpdatePropertyPriceCommandRequest : IRequest<bool>
     {
         public int PropertyId { get; init; }

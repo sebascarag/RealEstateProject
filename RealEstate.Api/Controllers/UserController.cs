@@ -7,6 +7,7 @@ namespace RealEstate.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -17,12 +18,14 @@ namespace RealEstate.Api.Controllers
         }
 
         [HttpPost("[action]")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(CreateUserTokenCommandRequest request)
         {
             return this.OkResponse(await _mediator.Send(request));
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Post(CreateUserCommandRequest request)
         {
             return this.OkResponse(await _mediator.Send(request));
@@ -35,7 +38,6 @@ namespace RealEstate.Api.Controllers
         }
 
         [HttpDelete]
-        [Authorize]
         public async Task<IActionResult> Delete(DeleteUserCommandRequest request)
         {
             return this.OkResponse(await _mediator.Send(request));

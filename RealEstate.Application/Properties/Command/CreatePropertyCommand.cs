@@ -1,11 +1,13 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using RealEstate.Application.Contracts;
 using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Entities;
 
 namespace RealEstate.Application.Properties.Command
 {
+    [Authorize]
     public record CreatePropertyCommandRequest : IRequest<bool>
     {
         public string? Name { get; init; }
