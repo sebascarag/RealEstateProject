@@ -14,10 +14,10 @@ namespace RealEstate.Services
             services.AddScoped<IFileService, FileService>();
 
             // Add JWT token Auth
-            //services.AddScoped<IJwtProvider, JwtProvider>();
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
-            //services.ConfigureOptions<JwtOptionsConfig>();
-            //services.ConfigureOptions<JwtBearerOptionsConfig>();
+            services.AddScoped<IJwtProvider, JwtProvider>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+            services.ConfigureOptions<JwtOptionsConfig>();
+            services.ConfigureOptions<JwtBearerOptionsConfig>();
 
             return services;
         }
