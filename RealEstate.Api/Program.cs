@@ -24,6 +24,13 @@ builder.Services.AddCors(cors =>
 // Add Swagger
 builder.Services.AddSwaggerGen(c =>
 {
+    c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+    {
+        Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
     c.SwaggerDoc("v2", new OpenApiInfo { Title = "RealEstateAPI", Version = "v2" });
 });
 
@@ -43,6 +50,8 @@ app.UseSwaggerUI(c =>
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
