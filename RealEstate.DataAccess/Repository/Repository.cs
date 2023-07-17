@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace RealEstate.DataAccess.Repository
 {
-    internal class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private RealEstateDbContext DbContext { get; set; }
         private DbSet<T> DbSet { get; set; }
@@ -46,6 +46,14 @@ namespace RealEstate.DataAccess.Repository
             dbEntityEntry.State = EntityState.Added;
 
             return dbEntityEntry.Entity;
+        }
+
+        public void AddRange(IEnumerable<T> entities) 
+        { 
+            foreach (var entity in entities)
+            {
+                Add(entity);
+            }
         }
 
         public void Update(T entity)

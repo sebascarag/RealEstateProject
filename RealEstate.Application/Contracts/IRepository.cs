@@ -8,6 +8,7 @@ namespace RealEstate.Application.Contracts
         IQueryable<T> GetAllActiveIncluding(params Expression<Func<T, object>>[] includeProperties);
         Task<IList<T>> ToListAsync(IQueryable<T> query, CancellationToken cancellationToken);
         T Add(T entity);
+        void AddRange(IEnumerable<T> entities);
         void Update(T entity);
         void Deactivate(T entity);
         Task<T?> GetByIdAsync(int id, CancellationToken cancellationToken);
