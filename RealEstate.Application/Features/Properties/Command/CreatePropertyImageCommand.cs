@@ -6,7 +6,7 @@ using RealEstate.Application.Contracts;
 using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Entities;
 
-namespace RealEstate.Application.Properties.Command
+namespace RealEstate.Application.Features.Properties.Command
 {
     [Authorize]
     public record CreatePropertyImageCommandRequest : IRequest<bool>

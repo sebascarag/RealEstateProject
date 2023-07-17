@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using RealEstate.Application.Properties.Queries;
+using RealEstate.Application.Features.Properties.Queries;
 using RealEstate.Domain.Entities;
 
 namespace RealEstate.Application.Mapping

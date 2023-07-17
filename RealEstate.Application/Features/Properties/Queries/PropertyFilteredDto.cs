@@ -1,4 +1,4 @@
-﻿namespace RealEstate.Application.Properties.Queries
+﻿namespace RealEstate.Application.Features.Properties.Queries
 {
     public class PropertyFilteredDto
     {

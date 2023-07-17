@@ -5,7 +5,7 @@ using RealEstate.Application.Contracts;
 using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Constants;
 
-namespace RealEstate.Application.User.Command
+namespace RealEstate.Application.Features.User.Command
 {
     [Authorize]
     public record AddUserAdminRoleCommandRequest(string UserName) : IRequest<bool> { }

@@ -3,12 +3,12 @@ using MediatR;
 using RealEstate.Application.Contracts;
 using RealEstate.Application.Exceptions;
 
-namespace RealEstate.Application.User.Command
+namespace RealEstate.Application.Features.User.Command
 {
     public record CreateUserCommandRequest : IRequest<bool>
     {
-        public string? UserName { get; init;}
-        public string? Password { get; init;}
+        public string? UserName { get; init; }
+        public string? Password { get; init; }
     }
 
     public class CreateUserCommandValidation : AbstractValidator<CreateUserCommandRequest>

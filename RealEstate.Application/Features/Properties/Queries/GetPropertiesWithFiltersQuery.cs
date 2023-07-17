@@ -4,7 +4,7 @@ using MediatR;
 using RealEstate.Application.Contracts;
 using RealEstate.Domain.Entities;
 
-namespace RealEstate.Application.Properties.Queries
+namespace RealEstate.Application.Features.Properties.Queries
 {
     public record GetPropertiesWithFiltersQueryRequest : IRequest<IList<PropertyFilteredDto>>
     {
