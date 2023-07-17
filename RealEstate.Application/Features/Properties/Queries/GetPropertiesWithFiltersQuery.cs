@@ -12,7 +12,7 @@ namespace RealEstate.Application.Features.Properties.Queries
         public string? Address { get; init; }
         public decimal MinPrice { get; init; } = 0;
         public decimal? MaxPrice { get; init; }
-        public uint MinYear { get; init; }
+        public int MinYear { get; init; } = 0;
         public int? MaxYear { get; init; }
         public string? OwnerName { get; init; }
     }
@@ -25,7 +25,7 @@ namespace RealEstate.Application.Features.Properties.Queries
                 .GreaterThanOrEqualTo(r => r.MinPrice)
                 .When(r => r.MaxPrice > 0);
             RuleFor(r => r.MaxYear)
-                .GreaterThanOrEqualTo(r => (int)r.MinYear)
+                .GreaterThanOrEqualTo(r => r.MinYear)
                 .When(r => r.MaxPrice > 0);
         }
     }
@@ -43,9 +43,9 @@ namespace RealEstate.Application.Features.Properties.Queries
         public async Task<IList<PropertyFilteredDto>> Handle(GetPropertiesWithFiltersQueryRequest request, CancellationToken cancellationToken)
         {
             var query = _propertyRepo.GetAllActiveIncluding(x => x.Owner)
-                .WhereIf(p => p.Name.ToLower().Contains((request.Name ?? "").ToLower()), !string.IsNullOrWhiteSpace(request.Name))
-                .WhereIf(p => p.Address.ToLower().Contains((request.Address ?? "").ToLower()), !string.IsNullOrWhiteSpace(request.Address))
-                .WhereIf(p => p.Owner.Name.ToLower().Contains((request.OwnerName ?? "").ToLower()), !string.IsNullOrWhiteSpace(request.OwnerName))
+                .WhereIf(p => p.Name.ToLower().Contains(request.Name!.ToLower()), !string.IsNullOrWhiteSpace(request.Name))
+                .WhereIf(p => p.Address.ToLower().Contains(request.Address!.ToLower()), !string.IsNullOrWhiteSpace(request.Address))
+                .WhereIf(p => p.Owner.Name.ToLower().Contains(request.OwnerName!.ToLower()), !string.IsNullOrWhiteSpace(request.OwnerName))
                 .Where(p => p.Year >= request.MinYear)
                 .WhereIf(p => p.Year <= request.MaxYear, request.MaxYear > 0)
                 .Where(p => p.Price >= request.MinPrice)
