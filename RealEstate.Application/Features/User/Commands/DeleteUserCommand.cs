@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using RealEstate.Application.Contracts;
 using RealEstate.Domain.Constants;
 
-namespace RealEstate.Application.Features.User.Command
+namespace RealEstate.Application.Features.User.Commands
 {
     [Authorize(Roles = Roles.Administrator)]
     public record DeleteUserCommandRequest(string UserName) : IRequest<bool> { }

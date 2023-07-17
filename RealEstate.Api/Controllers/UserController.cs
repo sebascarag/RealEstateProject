@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RealEstate.Application.Features.User.Command;
+using RealEstate.Application.Features.User.Commands;
 
 namespace RealEstate.Api.Controllers
 {

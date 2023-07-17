@@ -3,7 +3,7 @@ using MediatR;
 using RealEstate.Application.Contracts;
 using System.Security.Authentication;
 
-namespace RealEstate.Application.Features.User.Command
+namespace RealEstate.Application.Features.User.Commands
 {
     public record CreateUserTokenCommandRequest : IRequest<string>
     {

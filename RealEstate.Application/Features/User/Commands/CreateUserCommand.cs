@@ -3,7 +3,7 @@ using MediatR;
 using RealEstate.Application.Contracts;
 using RealEstate.Application.Exceptions;
 
-namespace RealEstate.Application.Features.User.Command
+namespace RealEstate.Application.Features.User.Commands
 {
     public record CreateUserCommandRequest : IRequest<bool>
     {

@@ -6,7 +6,7 @@ using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Constants;
 using RealEstate.Domain.Entities;
 
-namespace RealEstate.Application.Features.Properties.Command
+namespace RealEstate.Application.Features.Properties.Commands
 {
     [Authorize(Roles = Roles.Administrator)]
     public record UpdatePropertyPriceCommandRequest : IRequest<bool>
