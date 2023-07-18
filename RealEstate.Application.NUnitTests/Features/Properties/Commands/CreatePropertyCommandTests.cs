@@ -12,13 +12,6 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Commands
     public class CreatePropertyCommandTests
     {
         private IRepository<Property> _propertyRepoMock;
-        private readonly Fixture _fixture;
-
-        public CreatePropertyCommandTests()
-        {
-            _fixture = new Fixture();
-            _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-        }
 
         [SetUp]
         public void SetUp()

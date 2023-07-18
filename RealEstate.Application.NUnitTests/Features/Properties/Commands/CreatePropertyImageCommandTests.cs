@@ -13,15 +13,8 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Commands
     public class CreatePropertyImageCommandTests
     {
         private IRepository<PropertyImage> _propertyImageRepoMock;
-        private readonly Fixture _fixture;
         private Mock<IFileService> _fileServiceMock;
         private Mock<IFormFile> _formFileMock;
-
-        public CreatePropertyImageCommandTests()
-        {
-            _fixture = new Fixture();
-            _fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-        }
 
         [SetUp]
         public void SetUp()
