@@ -12,7 +12,7 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
     [TestFixture]
     public class GetPropertiesWithFiltersQueryTests
     {
-        private IRepository<Property> _propertyRepo;
+        private IRepository<Property> _propertyRepoMock;
         private readonly IMapper _mapper;
         private readonly Fixture _fixture;
 
@@ -28,12 +28,12 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
         [SetUp]
         public async Task SetUp()
         {
-            _propertyRepo = MockRepository<Property>.GetMockRepository();
+            _propertyRepoMock = MockRepository<Property>.GetMockIRepository();
 
             // add test base data
             var testData = _fixture.CreateMany<Property>().ToList();
-            _propertyRepo.AddRange(testData);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.AddRange(testData);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
         {
             // Arrange
             GetPropertiesWithFiltersQueryRequest request = new();
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -65,11 +65,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Name, propertyName)
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { Name = seachValue };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -94,11 +94,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Name, propertyName)
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { Name = seachValue };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -122,11 +122,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Address, propertyAddress)
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { Address = seachValue };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -151,11 +151,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Address, propertyAddress)
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { Address = seachValue };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -179,11 +179,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Price, minPrice)
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { MinPrice = minPrice};
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -208,11 +208,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Price, maxPrice)
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { MaxPrice = maxPrice };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -245,11 +245,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
                                 .With(p => p.Active, true).Create()
             };
 
-            _propertyRepo.AddRange(propertyTestList);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.AddRange(propertyTestList);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { MinPrice = minPrice, MaxPrice = maxPrice };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -274,11 +274,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Year, minYear)
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { MinYear = minYear };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -303,11 +303,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Year, maxYear)
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { MaxYear = maxYear };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -339,11 +339,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
                                 .With(p => p.Active, true).Create()
             };
 
-            _propertyRepo.AddRange(propertyTestList);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.AddRange(propertyTestList);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { MinYear = minYear, MaxYear = maxYear };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
@@ -368,11 +368,11 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Queries
             var property = _fixture.Build<Property>()
                                 .With(p => p.Owner, _fixture.Build<Owner>().With(o => o.Name, propertyOwnerName).Create())
                                 .With(p => p.Active, true).Create();
-            _propertyRepo.Add(property);
-            await _propertyRepo.SaveAsync(CancellationToken.None);
+            _propertyRepoMock.Add(property);
+            await _propertyRepoMock.SaveAsync(CancellationToken.None);
 
             GetPropertiesWithFiltersQueryRequest request = new() { OwnerName = seachValue };
-            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepo, _mapper);
+            GetPropertiesWithFiltersQueryHandler handler = new(_propertyRepoMock, _mapper);
 
             // Act
             var result = await handler.Handle(request, CancellationToken.None);
