@@ -53,8 +53,12 @@ namespace RealEstate.Services.FileServices
                     string filePath = Path.Combine(uploads, fileName);
                     using Stream fileStream = new FileStream(filePath, FileMode.Create);
                     await formFile.CopyToAsync(fileStream);
+                    return fileName;
                 }
-                return fileName;
+                else
+                {
+                    throw new Exception("File without content");
+                }
             }
             catch (Exception)
             {

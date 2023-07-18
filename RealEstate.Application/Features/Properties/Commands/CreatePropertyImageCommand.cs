@@ -61,7 +61,7 @@ namespace RealEstate.Application.Features.Properties.Commands
 
                 var propetyImage = new PropertyImage
                 {
-                    PropertyId = request.PropertyId.Value,
+                    PropertyId = request.PropertyId!.Value,
                     File = fileName,
                     Enable = request.Enabled,
                     Active = true
