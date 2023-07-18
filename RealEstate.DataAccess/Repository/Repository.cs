@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using RealEstate.Application.Contracts;
+using RealEstate.Application.Exceptions;
 using System.Linq.Expressions;
 
 namespace RealEstate.DataAccess.Repository
@@ -74,7 +75,17 @@ namespace RealEstate.DataAccess.Repository
             SetValue(dbEntityEntry, "Active", false);
         }
 
-        public async Task<bool> SaveAsync(CancellationToken cancellationToken) => await DbContext.SaveChangesAsync(cancellationToken) > 0;
+        public async Task<bool> SaveAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                return await DbContext.SaveChangesAsync(cancellationToken) > 0;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                throw new ApiException(dbEx.Message);
+            }
+        }
 
         private void SetValue(EntityEntry entity, string propertyName, object newValue)
         {

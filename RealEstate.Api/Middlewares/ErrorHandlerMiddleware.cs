@@ -47,9 +47,6 @@ namespace RealEstate.Api.Middlewares
                         // not found error
                         response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         break;
-                    case DbUpdateException e:
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
                     default:
                         // unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
