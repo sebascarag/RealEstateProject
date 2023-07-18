@@ -64,7 +64,7 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Commands
         }
 
         [Test]
-        public async Task UpdatePropertyCommand_InputDoesNotExistPropertyId_ReturnsApiException()
+        public void UpdatePropertyCommand_InputDoesNotExistPropertyId_ReturnsApiException()
         {
             // Arrange
             var request = new UpdatePropertyCommandRequest
@@ -79,7 +79,7 @@ namespace RealEstate.Application.NUnitTests.Features.Properties.Commands
         }
 
         [Test]
-        public async Task UpdatePropertyCommand_InputEmptyPropertyRequest_ReturnsApiException()
+        public void UpdatePropertyCommand_InputEmptyPropertyRequest_ReturnsApiException()
         {
             // Arrange
             var request = new UpdatePropertyCommandRequest();
