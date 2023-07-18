@@ -10,7 +10,13 @@ namespace RealEstate.Application.NUnitTests.Mocks
 {
     public static class MockRepository<T> where T : class
     {
-        public static IRepository<T> GetMockRepository()
+        public static IRepository<T> GetMockIRepository()
+        {
+            var repositoryMock = GetMockRepository();
+            return repositoryMock.Object;
+        }
+
+        public static Mock<Repository<T>> GetMockRepository()
         {
             // create db context in memory
             var options = new DbContextOptionsBuilder<RealEstateDbContext>()
@@ -26,7 +32,7 @@ namespace RealEstate.Application.NUnitTests.Mocks
 
             // create repository
             var repositoryMock = new Mock<Repository<T>>(dbContextFake);
-            return repositoryMock.Object;
+            return repositoryMock;
         }
     }
 }
